@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora Simples</title>
+
+</head>	
+	<style>
+		
+		button {
+			margin: 2px;	
+			width: 50px;
+			height: 50px;
+			background-color: dimgray;
+			font-weight: bold;
+			color: white;
+			border-radius: 25px
+		}
+		#calc {
+			text-align: center;
+			background-color: black;
+			width: 250px;
+		}
+		.operador {
+			color: green;
+		}
+		#igual {
+			background-color: green;
+		}
+		#limpar {
+			color: red;
+		}
+		h1 {
+			background-color: white;
+		}
+		
+	</style>
+<body>
+    
+	<div id="calc">
+		<h1>Calculadora</h1>
+    	<input type="text" id="tela" disabled><br>
+		<button id="limpar" onclick="cleartela()">C</button>
+		<button class="operador" onclick="juntarNatela('/')">/</button>
+		<br>
+    	<button onclick="juntarNatela('7')">7</button>
+    	<button onclick="juntarNatela('8')">8</button>
+    	<button onclick="juntarNatela('9')">9</button>
+		<button class="operador" onclick="juntarNatela('*')">X</button>
+    	<br>
+		<button onclick="juntarNatela('4')">4</button>
+    	<button onclick="juntarNatela('5')">5</button>
+    	<button onclick="juntarNatela('6')">6</button>
+		<button class="operador" onclick="juntarNatela('-')">-</button>
+		<br>
+		<button onclick="juntarNatela('1')">1</button>
+   	 	<button onclick="juntarNatela('2')">2</button>
+    	<button onclick="juntarNatela('3')">3</button>
+		<button class="operador" onclick="juntarNatela('+')">+</button>
+    	<br>
+		<button>,</button>
+    	<button onclick="juntarNatela('0')">0</button>
+		<button onclick="apagar()">Del</button>
+    	<button id="igual" onclick="calcularResultado()">=</button>
+	</div>
+
+    <script>
+    function juntarNatela(valor) {
+		const expressao = getVisor();
+		if(expressao == "Erro"){
+			cleartela();
+		}
+		if(IsOperador(valor)){
+			if(expressao == "")
+				return;
+			var ultimoCaractere = getUltimoCaractere();
+			if(IsOperador(ultimoCaractere))
+				return;
+		}	
+		document.getElementById('tela').value += valor;     
+    }	
+	function calcularResultado() {
+		try {
+			const expressao = getVisor();
+		 		if(expressao.length >1) {
+			 		var ultimoCaractere = getUltimoCaractere();
+			 		if(IsOperador(ultimoCaractere)) {
+						alert("Não foi possivel realizar o calculo");
+			 		}else{
+						const resultado = eval(expressao);
+						setVisor(resultado);
+			 		}
+		 	}
+		}catch (error) {
+			console.log(error);
+			setVisor('Erro');
+		}
+	}
+	function cleartela() {
+        setVisor('');
+    }
+	function apagar() {
+		const expressao = getVisor();
+		setVisor(expressao.substring(0,expressao.length-1));
+	}
+	function getVisor(){
+		return document.getElementById('tela').value;
+	}
+	function setVisor(valor){
+		document.getElementById('tela').value = valor;
+	}
+	function IsOperador (valor){
+		return valor == "/" || 
+		valor == "*" || 
+		valor == "+" || 
+		valor == "-";
+  	}
+	function getUltimoCaractere(){
+		var expressao = getVisor();
+		return expressao.substring(expressao.length-1,expressao.length)
+	}
+    </script>
+</body>
+</html>
