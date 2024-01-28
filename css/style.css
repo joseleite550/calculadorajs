@@ -1,0 +1,37 @@
+button {
+    margin: 2px;	
+    width: 100px;
+    height: 100px;
+    background-color: dimgray;
+    font-weight: bold;
+    color: white;
+    border-radius: 25px;
+    font-size: 50px;
+}
+#calc {
+    border-radius: 25px;
+    background-color: black;
+    width: 450px;
+    margin-top: 100px;
+}
+.operador {
+    color: lime;
+}
+#igual {
+    background-color: green;
+}
+#limpar {
+    color: red;
+}
+h1 {
+    background-color: white;
+}
+#tela{
+    width: 450px;
+    font-size: 50px;
+    font-weight: bold;
+}
+footer{
+    text-align: center;
+    margin-top: 100px;
+}

@@ -2,48 +2,9 @@
 <html>
 <head>
     <title>Calculadora</title>
-
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/script.js"></script>
 </head>	
-	<style>	
-		button {
-			margin: 2px;	
-			width: 100px;
-			height: 100px;
-			background-color: dimgray;
-			font-weight: bold;
-			color: white;
-			border-radius: 25px;
-			font-size: 50px;
-		}
-		#calc {
-			border-radius: 25px;
-			background-color: black;
-			width: 450px;
-			margin-top: 100px;
-		}
-		.operador {
-			color: lime;
-		}
-		#igual {
-			background-color: green;
-		}
-		#limpar {
-			color: red;
-		}
-		h1 {
-			background-color: white;
-		}
-		#tela{
-			width: 450px;
-		    font-size: 50px;
-			font-weight: bold;
-		}
-		footer{
-			text-align: center;
-			margin-top: 100px;
-		}
-		
-	</style>
 <body>
     <center>
 	<div id="calc">
@@ -72,63 +33,6 @@
     	<button id="igual" onclick="calcularResultado()">=</button>
 	</div>
 	</center>
-
-    <script>
-    function juntarNatela(valor) {
-		const expressao = getVisor();
-		if(expressao == "Erro"){
-			cleartela();
-		}
-		if(IsOperador(valor)){
-			if(expressao == "")
-				return;
-			var ultimoCaractere = getUltimoCaractere();
-			if(IsOperador(ultimoCaractere))
-				return;
-		}	
-		document.getElementById('tela').value += valor;     
-    }	
-	function calcularResultado() {
-		try {
-			const expressao = getVisor();
-		 		if(expressao.length >1) {
-			 		var ultimoCaractere = getUltimoCaractere();
-			 		if(IsOperador(ultimoCaractere)) {
-						alert("Não foi possivel realizar o calculo");
-			 		}else{
-						const resultado = eval(expressao);
-						setVisor(resultado);
-			 		}
-		 	}
-		}catch (error) {
-			console.log(error);
-			setVisor('Erro');
-		}
-	}
-	function cleartela() {
-        setVisor('');
-    }
-	function apagar() {
-		const expressao = getVisor();
-		setVisor(expressao.substring(0,expressao.length-1));
-	}
-	function getVisor(){
-		return document.getElementById('tela').value;
-	}
-	function setVisor(valor){
-		document.getElementById('tela').value = valor;
-	}
-	function IsOperador (valor){
-		return valor == "/" || 
-		valor == "*" || 
-		valor == "+" || 
-		valor == "-";
-  	}
-	function getUltimoCaractere(){
-		var expressao = getVisor();
-		return expressao.substring(expressao.length-1,expressao.length)
-	}
-    </script>
 </body>
 	<footer>Desenvolvido por José Leite (jose.fraklin550@gmail.com)</footer>
 </html>
